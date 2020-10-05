@@ -2,6 +2,8 @@
 
 if(isset($_POST['chat_send']))
 {
+    // username
+    
     $message = $_POST['message'];
 }
 else

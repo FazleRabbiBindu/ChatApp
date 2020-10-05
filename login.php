@@ -1,10 +1,6 @@
 <?php
 if(isset($_POST['signup']))
 {
-    //grab username password data from database
-    //if username : already account exist : login
-    
-    //else insert data into database
     $server_name = 'localhost';
     $user_name = 'root';
     $password = '';
@@ -18,14 +14,6 @@ if(isset($_POST['signup']))
     {
     echo "Connection Successful<br>";
     }
-
-    //Creating a database table
-    // $sql = " CREATE TABLE User_info (
-    //     SL INT(6) AUTO_INCREMENT PRIMARY KEY,
-    //     Pass_word VARCHAR(20) ,
-    //     UserName VARCHAR (10)
-    // )";
-
     //select username and password from table user info
     $user = $_POST['u_name'];
     $sql= "SELECT Pass_word,UserName FROM user_info WHERE UserName='$user'";
@@ -35,24 +23,22 @@ if(isset($_POST['signup']))
         $row = $result->fetch_assoc();
         if($row != NULL)
         {
-            print_r($row);
-        }
-        else{
-            echo "ID not found <br>";
-            //data insert
-            //POST[],USER NAME PASSWOR
-            $pass = $_POST['u_pass'];
-            // INSERT INTTO TABLE (COL1,COL2) VALUES ('10','ABC')
-            $sql= "INSERT INTO user_info (UserName,Pass_word) VALUES ('$user','$pass')";
-            if($conn->query($sql))
+            if($row['Pass_word'] === $_POST['u_pass'])
             {
-                echo "Data upload successful<br>";
+                
             }
-            else{
-                echo "Erro in query".$conn->error;
-            }
+            print_r($row);
+            echo 'pass'.$row['Pass_word'].'<br>';
+            echo 'user name'.$row['UserName'];
+            $_SESSION['user'] = $_POST['u_name'];
+            $_SESSION['password'] = $_POST['u_pass'];
+            // header('location:chat.php');
+            // include 'chat.php';
         }
-        echo "Table search Successfully<br>";
+        else
+        {
+            echo "Id not matched<br>";
+        }
     }
     else{
         echo "SQL error <br>". $conn->error;
