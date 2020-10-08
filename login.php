@@ -1,4 +1,5 @@
 <?php
+session_start();
 if(isset($_POST['signup']))
 {
     $server_name = 'localhost';
@@ -25,14 +26,17 @@ if(isset($_POST['signup']))
         {
             if($row['Pass_word'] === $_POST['u_pass'])
             {
-                
+                print_r($row);
+                echo 'pass'.$row['Pass_word'].'<br>';
+                echo 'user name'.$row['UserName'];
+                $_SESSION['user'] = $_POST['u_name'];
+                $_SESSION['password'] = $_POST['u_pass'];
+                header('location:chat.php');
             }
-            print_r($row);
-            echo 'pass'.$row['Pass_word'].'<br>';
-            echo 'user name'.$row['UserName'];
-            $_SESSION['user'] = $_POST['u_name'];
-            $_SESSION['password'] = $_POST['u_pass'];
-            // header('location:chat.php');
+            else
+            {
+                echo 'Wrong info<br>';
+            }
             // include 'chat.php';
         }
         else
