@@ -2,19 +2,9 @@
 session_start();
 if(isset($_POST['signup']))
 {
-    $server_name = 'localhost';
-    $user_name = 'root';
-    $password = '';
-    $db_name = 'class_1';
-    $conn = new mysqli($server_name,$user_name,$password,$db_name);
-    if($conn->connect_error)
-    {
-    echo "Connection Failed".$conn->connect_error."<br>";
-    }
-    else
-    {
-    echo "Connection Successful<br>";
-    }
+    //db_connection
+    include 'dbconnect.php';
+    
     //select username and password from table user info
     $user = $_POST['u_name'];
     $sql= "SELECT Pass_word,UserName FROM user_info WHERE UserName='$user'";
