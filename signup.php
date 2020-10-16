@@ -3,21 +3,10 @@ if(isset($_POST['signup']))
 {
     //grab username password data from database
     //if username : already account exist : login
-    
     //else insert data into database
-    $server_name = 'localhost';
-    $user_name = 'root';
-    $password = '';
-    $db_name = 'class_1';
-    $conn = new mysqli($server_name,$user_name,$password,$db_name);
-    if($conn->connect_error)
-    {
-    echo "Connection Failed".$conn->connect_error."<br>";
-    }
-    else
-    {
-    echo "Connection Successful<br>";
-    }
+    
+    //db_connection
+    include 'dbconnect.php';
 
     //Creating a database table
     // $sql = " CREATE TABLE User_info (
