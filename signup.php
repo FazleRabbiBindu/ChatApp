@@ -69,7 +69,7 @@ if(isset($_POST['signup']))
 <body>
     
     <form action="" method="post">
-    <input type="text" name="u_name" placeholder="user name" required><br>
+    <input type="email" name="u_name" placeholder="user name" required><br>
     <input type="password" name="u_pass" placeholder="Password" required>
     <input type="submit" name="signup" value="Sign up">
     </form>
